@@ -1,12 +1,12 @@
 blueprint:
-  source_url: https://github.com/Damian666/HomeAssistant/blob/2932abecbb73ddf09a47d1a3d8c759073b0b070f/blueprints/automation/Damian666/Lidl_4Button_Remote_Switch.yaml
-  name: ZHA - Lidl 4Button Remote Switch - Test
+  source_url: https://github.com/jbalius/HomeAssistant/blob/master/blueprints/automation/JB/Lidl_4Button_Remote_Switch.yaml
+  name: ZHA - Lidl Livarno Lux 4 Button Remote Switch
   description: Automate your Lidl/LivarnoLux 4Button Remote Switch using ZHA events. (Test)
   domain: automation
   input:
     Lidl_4Button_Remote_switch:
-      name: Lidl 4Button Remote Switch
-      description: Select the Lidl 4Button Remote Switch to use
+      name: Lidl Livarno Lux 4 Button Remote Switch
+      description: Select the Lidl Livarno Lux 4 Button Remote Switch to use
       selector:
         device:
           integration: zha
@@ -15,37 +15,37 @@ blueprint:
           multiple: false
     button_one_short_press:
       name: Single Press
-      description: Action to run on button 1 single press
+      description: Action to run on button OFF (button 1) single press
       default: []
       selector:
         action: {}
     button_two_short_press:
       name: Single Press
-      description: Action to run on button 2 single press
+      description: Action to run on button ON (button 2) single press
       default: []
       selector:
         action: {}
     button_three_short_press:
       name: Single Press
-      description: Action to run on button 3 single press
+      description: Action to run on button LIGHTEN (button 3) single press
       default: []
       selector:
         action: {}
     button_three_long_press:
       name: Long Press
-      description: Action to run on button 3 long press
+      description: Action to run on LIGHTEN (button 3) long press
       default: []
       selector:
         action: {}
     button_four_short_press:
       name: Single Press
-      description: Action to run on button 4 single press
+      description: Action to run on DIM (button 4) single press
       default: []
       selector:
         action: {}
     button_four_long_press:
       name: Long Press
-      description: Action to run on button 4 long press
+      description: Action to run on DIM (button 4) long press
       default: []
       selector:
         action: {}
@@ -55,7 +55,7 @@ trigger:
   - platform: event
     event_type: zha_event
     event_data:
-      device_id: !input 'Lidl_4Button_Remote_switch'
+      device_id: !input 'Lidl_Livarno_Lux_4_Button_Remote_switch'
 action:
   - variables:
       command: "{{ trigger.event.data.command }}"
