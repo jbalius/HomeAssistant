@@ -1,10 +1,10 @@
 blueprint:
   source_url: https://github.com/jbalius/HomeAssistant/blob/master/blueprints/automation/JB/Lidl_4Button_Remote_Switch.yaml
   name: ZHA - Lidl Livarno Lux 4 Button Remote Switch
-  description: Automate your Lidl/LivarnoLux 4Button Remote Switch using ZHA events. (Test)
+  description: Automate your Lidl Livarno Lux 4 Button Remote Switch using ZHA events.
   domain: automation
   input:
-    Lidl_4Button_Remote_switch:
+    Lidl_Livarno_Lux_4_Button_Remote_switch:
       name: Lidl Livarno Lux 4 Button Remote Switch
       description: Select the Lidl Livarno Lux 4 Button Remote Switch to use
       selector:
@@ -13,37 +13,37 @@ blueprint:
           manufacturer: _TYZB01_bngwdjsr
           model: TS1001
           multiple: false
-    button_one_short_press:
+    button_off_short_press:
       name: Single Press
       description: Action to run on button OFF (button 1) single press
       default: []
       selector:
         action: {}
-    button_two_short_press:
+    button_on_short_press:
       name: Single Press
       description: Action to run on button ON (button 2) single press
       default: []
       selector:
         action: {}
-    button_three_short_press:
+    button_lighten_short_press:
       name: Single Press
       description: Action to run on button LIGHTEN (button 3) single press
       default: []
       selector:
         action: {}
-    button_three_long_press:
+    button_lighten_long_press:
       name: Long Press
       description: Action to run on LIGHTEN (button 3) long press
       default: []
       selector:
         action: {}
-    button_four_short_press:
+    button_dim_short_press:
       name: Single Press
       description: Action to run on DIM (button 4) single press
       default: []
       selector:
         action: {}
-    button_four_long_press:
+    button_dim_long_press:
       name: Long Press
       description: Action to run on DIM (button 4) long press
       default: []
@@ -62,15 +62,15 @@ action:
       button_mode: "{{ trigger.event.data.args[0] }}"
   - choose:
     - conditions: "{{ command == 'off' }}"
-      sequence: !input 'button_one_short_press'
+      sequence: !input 'button_off_short_press'
     - conditions: "{{ command == 'on' }}"
-      sequence: !input 'button_two_short_press'
+      sequence: !input 'button_on_short_press'
     - conditions: "{{ button_mode == 'StepMode.Up' }}"
-      sequence: !input 'button_three_short_press'
+      sequence: !input 'button_lighten_short_press'
     - conditions: "{{ button_mode == 'StepMode.Down' }}"
-      sequence: !input 'button_four_short_press'
+      sequence: !input 'button_dim_short_press'
     - conditions: "{{ button_mode == 'MoveMode.Up' }}"
-      sequence: !input 'button_three_long_press'
+      sequence: !input 'button_lighten_long_press'
     - conditions: "{{ button_mode == 'MoveMode.Down' }}"
-      sequence: !input 'button_four_long_press'
+      sequence: !input 'button_dim_long_press'
       
